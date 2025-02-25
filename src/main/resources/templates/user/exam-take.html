@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Take Exam</title>
+</head>
+<body>
+    <h2 th:text="${exam.name}"></h2>
+    <form th:action="@{/user/exam/submit}" method="post" th:object="${examSubmission}">
+        <input type="hidden" th:field="*{examId}" th:value="${exam.id}"/>
+        <div th:each="question, iter : ${questions}">
+            <p th:text="${iter.count + '. ' + question.questionText}"></p>
+            <input type="radio" th:name="|answers[${iter.index}]|" value="A" th:text="${question.optionA}"/>
+            <input type="radio" th:name="|answers[${iter.index}]|" value="B" th:text="${question.optionB}"/>
+            <input type="radio" th:name="|answers[${iter.index}]|" value="C" th:text="${question.optionC}"/>
+            <input type="radio" th:name="|answers[${iter.index}]|" value="D" th:text="${question.optionD}"/>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/user/exams">Cancel</a>
+</body>
+</html>/html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Results</title>
+</head>
+<body>
+    <h2>Exam Results</h2>
+    <form th:action="@{/admin/results/search}" method="get">
+        <input type="text" name="examName" placeholder="Search by Exam Name"/>
+        <input type="text" name="studentName" placeholder="Search by Student Name"/>
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <tr><th>Student</th><th>Exam</th><th>Score</th><th>Date Taken</th></tr>
+        <tr th:each="result : ${results}">
+            <td th:text="${result.student.username}"></td> <!-- Updated field -->
+            <td th:text="${result.examination.name}"></td>
+            <td th:text="${result.score}"></td>
+            <td th:text="${result.dateTaken}"></td> <!-- Updated field -->
+        </tr>
+    </table>
+    <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>

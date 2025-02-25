@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Exams</title>
+</head>
+<body>
+    <h2>Manage Examinations</h2>
+    <form th:action="@{/admin/exams/search}" method="get">
+        <input type="text" name="name" placeholder="Search by name"/>
+        <button type="submit">Search</button>
+    </form>
+    <p><a href="/admin/exam/add">Add New Exam</a></p>
+    <h3>Existing Exams</h3>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Price</th><th>Actions</th></tr>
+        <tr th:each="exam : ${exams}">
+            <td th:text="${exam.id}"></td>
+            <td th:text="${exam.name}"></td>
+            <td th:text="${exam.price}"></td>
+            <td><a th:href="@{/admin/exam/edit(id=${exam.id})}">Edit</a></td>
+            <td>
+                <form th:action="@{/admin/exam/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${exam.id}"/>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>

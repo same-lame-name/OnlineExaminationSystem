@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Exams</title>
+</head>
+<body>
+    <h2>Available Examinations</h2>
+    <table>
+        <tr><th>Name</th><th>Price</th><th>Action</th></tr>
+        <tr th:each="exam : ${exams}">
+            <td th:text="${exam.name}"></td>
+            <td th:text="${exam.price}"></td>
+            <td>
+                <a th:href="@{/user/exam-purchase(examId=${exam.id})}"
+                   th:unless="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">
+                    Purchase
+                </a>
+                <a th:href="@{/user/exam-take(examId=${exam.id})}"
+                   th:if="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">
+                    Take Exam
+                </a>
+            </td>
+        </tr>
+    </table>
+    <a href="/home">Back to Home</a>
+</body>
+</html>

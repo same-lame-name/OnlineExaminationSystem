@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Exam</title>
+</head>
+<body>
+    <h2>Add New Examination</h2>
+
+    <form th:action="@{/admin/exam/add}" method="post" th:object="${newExam}">
+        <div>
+            <label for="name">Exam Name:</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Exam Name" required/>
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" th:field="*{price}" id="price" step="0.01" placeholder="Price" required/>
+        </div>
+        <button type="submit">Add Exam</button>
+    </form>
+
+    <a href="/admin/exams">Cancel</a>
+</body>
+</html>

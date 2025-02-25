@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Logout - Online Exam System</title>
+    <style>
+        .landing-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <h2>Welcome to the Online Exam System</h2>
+        <p>Please choose an option:</p>
+        <a href="/login">Login</a> | <a href="/register">Register</a>
+        <div th:if="${param.logout}">
+            <p class="success">You have been successfully logged out.</p>
+        </div>
+    </div>
+</body>
+</html>

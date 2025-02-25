@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Examinations</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Available Examinations</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="exam : ${exams}">
+            <td th:text="${exam.id}"></td>
+            <td th:text="${exam.name}"></td>
+            <td><a th:href="@{/user/exams/{id}(id=${exam.id})}">Take Exam</a></td>
+        </tr>
+    </table>
+</body>
+</html>

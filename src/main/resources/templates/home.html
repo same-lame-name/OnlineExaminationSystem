@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Online Exam System</h1>
+    <div>
+        <span sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin Dashboard</a></span>
+        <span sec:authorize="hasRole('USER')"><a href="/user/exams">View Exams</a></span>
+        <span sec:authorize="hasRole('USER')"><a href="/user/results">View Results</a></span>
+        <span sec:authorize="hasRole('USER')"><a href="/user/profile">Profile</a></span>
+        <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+    </div>
+    <p>Welcome, <span sec:authentication="name">User</span>!</p>
+    <p>Role: <span sec:authentication="authorities">ROLE</span></p>
+</body>
+</html>

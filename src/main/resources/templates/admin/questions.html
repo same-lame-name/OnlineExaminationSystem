@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Questions</title>
+</head>
+<body>
+    <h2>Add Question</h2>
+    <form th:action="@{/admin/question/add}" method="post" th:object="${newQuestion}">
+        <select name="examId">
+            <option th:each="exam : ${exams}" th:value="${exam.id}" th:text="${exam.name}"></option>
+        </select>
+        <input th:field="*{questionText}" placeholder="Question"/>
+        <input th:field="*{optionA}" placeholder="Option A"/>
+        <input th:field="*{optionB}" placeholder="Option B"/>
+        <input th:field="*{optionC}" placeholder="Option C"/>
+        <input th:field="*{optionD}" placeholder="Option D"/>
+        <input th:field="*{correctAnswer}" placeholder="Correct Answer (A/B/C/D)"/>
+        <button type="submit">Add</button>
+    </form>
+    <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>

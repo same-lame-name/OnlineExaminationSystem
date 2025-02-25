@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Admin Dashboard - Online Exam System</title>
+    <style>
+        .dashboard {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .menu a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, <span sec:authentication="name">Admin</span>!</p>
+        <div>
+            <a href="/admin/exams">Manage Examinations</a>
+            <a href="/admin/questions">Manage Questions</a>
+            <a href="/admin/results">View Results</a>
+            <a href="/admin/profile">Profile Settings</a>
+            <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+        </div>
+
+    </div>
+</body>
+</html>
