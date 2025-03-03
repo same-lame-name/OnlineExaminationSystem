@@ -1,0 +1,93 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Manage Questions</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Add Question</h2>-->
+<!--    <form th:action="@{/admin/question/add}" method="post" th:object="${newQuestion}">-->
+<!--        <select name="examId">-->
+<!--            <option th:each="exam : ${exams}" th:value="${exam.id}" th:text="${exam.name}"></option>-->
+<!--        </select>-->
+<!--        <input th:field="*{questionText}" placeholder="Question"/>-->
+<!--        <input th:field="*{optionA}" placeholder="Option A"/>-->
+<!--        <input th:field="*{optionB}" placeholder="Option B"/>-->
+<!--        <input th:field="*{optionC}" placeholder="Option C"/>-->
+<!--        <input th:field="*{optionD}" placeholder="Option D"/>-->
+<!--        <input th:field="*{correctAnswer}" placeholder="Correct Answer (A/B/C/D)"/>-->
+<!--        <button type="submit">Add</button>-->
+<!--    </form>-->
+<!--    <a href="/admin/dashboard">Back to Dashboard</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        select, input {
+            width: calc(100% - 20px); /* Full width minus padding */
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* Ensures padding is included in width calculation */
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h2>Add Question</h2>
+<div class="form-container">
+    <form th:action="@{/teacher/question/add}" method="post" th:object="${newQuestion}">
+        <select name="examId" required>
+            <option th:each="exam : ${exams}" th:value="${exam.id}" th:text="${exam.name}"></option>
+        </select>
+        <input th:field="*{questionText}" placeholder="Question" required/>
+        <input th:field="*{optionA}" placeholder="Option A" required/>
+        <input th:field="*{optionB}" placeholder="Option B" required/>
+        <input th:field="*{optionC}" placeholder="Option C" required/>
+        <input th:field="*{optionD}" placeholder="Option D" required/>
+        <input th:field="*{correctAnswer}" placeholder="Correct Answer (A/B/C/D)" required/>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<a href="/teacher/dashboard">Back to Dashboard</a>
+</body>
+</html>

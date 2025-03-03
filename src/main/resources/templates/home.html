@@ -264,17 +264,18 @@
 </head>
 <body>
 <header>
-    <div class="logo">
-        <img src="logo.jpeg" alt="Brand Logo">
+    <div style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%;">
+        <img src="/logo.jpeg" alt="Brand Logo" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
+
 </header>
 <div class="container">
     <div class="sidebar">
         <ul>
             <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin Dashboard</a></li>
-            <li sec:authorize="hasRole('USER')"><a href="/user/exams">View Exams</a></li>
-            <li sec:authorize="hasRole('USER')"><a href="/user/results">View Results</a></li>
-            <li sec:authorize="hasRole('USER')"><a href="/user/profile">Profile</a></li>
+            <li sec:authorize="hasRole('STUDENT')"><a href="/user/exams">View Exams</a></li>
+            <li sec:authorize="hasRole('STUDENT')"><a href="/user/results">View Results</a></li>
+            <li sec:authorize="hasRole('STUDENT')"><a href="/user/profile">Profile</a></li>
             <li class="logout-container">
                 <form th:action="@{/logout}" method="post">
                     <button type="submit" class="logout-btn">Logout</button>

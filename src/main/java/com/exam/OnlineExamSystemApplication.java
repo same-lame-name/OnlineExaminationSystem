@@ -18,15 +18,16 @@ public class OnlineExamSystemApplication {
     public CommandLineRunner initAdminUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
             String username = "admin";
-            String plainPassword = "password123";
+            String plainPassword = "password";
             // Check if admin exists
             User existingAdmin = userRepository.findByUsername(username);
             if (existingAdmin == null) {
                 User admin = new User();
                 admin.setUsername(username);
-                admin.setPassword(passwordEncoder.encode(plainPassword)); // Encrypt "admin123"
+                admin.setPassword(passwordEncoder.encode(plainPassword));
                 admin.setEmail("admin@example.com");
-                admin.setRole("ADMIN");
+                admin.setApproved(true);
+                admin.setRole(User.Role.ADMIN);
                 userRepository.save(admin);
                 System.out.println("Admin user created successfully:");
                 System.out.println("Username: " + username);

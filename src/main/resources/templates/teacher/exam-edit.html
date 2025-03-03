@@ -1,0 +1,104 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Edit Exam</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Edit Examination</h2>-->
+<!--    <form th:action="@{/admin/exam/edit}" method="post" th:object="${exam}">-->
+<!--        <input type="hidden" th:field="*{id}"/>-->
+<!--        <label for="name">Name:</label>-->
+<!--        <input type="text" id="name" th:field="*{name}"/><br/>-->
+<!--        <label for="price">Price:</label>-->
+<!--        <input type="number" id="price" th:field="*{price}"/><br/>-->
+<!--        <button type="submit">Save</button>-->
+<!--    </form>-->
+<!--    <a href="/admin/exams">Back to Exams List</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: auto;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #d9534f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back:hover {
+            color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Examination</h2>
+    <form th:action="@{/teacher/exam/edit}" method="post" th:object="${exam}">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="name">Exam Name:</label>
+        <input type="text" id="name" th:field="*{name}" required/>
+        <label for="price">Price:</label>
+        <input type="number" id="price" th:field="*{price}" step="0.01" required/>
+        <button type="submit">Save</button>
+    </form>
+    <a href="/teacher/exams" class="back">Back to Exams List</a>
+</div>
+</body>
+</html>

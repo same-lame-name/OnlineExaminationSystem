@@ -116,6 +116,20 @@
             text-align: center;
             margin-top: auto;
         }
+        .feature img, .about img {
+            max-width: 200px;
+            height: auto;
+            margin: 10px auto;
+            display: block;
+        }
+        .key-features {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .feature {
+            width: 30%;
+        }
     </style>
 </head>
 <body>
@@ -123,15 +137,15 @@
     <div style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%;">
         <img src="/logo.jpeg" alt="Brand Logo" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
+
 </header>
 <div class="container">
     <div class="sidebar">
         <ul>
-            <li><a href="/admin/exams">Manage Examinations</a></li>
-            <li><a href="/admin/questions">Manage Questions</a></li>
-            <li><a href="/admin/results">View Results</a></li>
-            <li><a href="/admin/profile">Profile Settings</a></li>
-
+            <li><a href="/teacher/exams">Manage Examinations</a></li>
+            <li><a href="/teacher/questions">Manage Questions</a></li>
+            <li><a href="/teacher/results">View Results</a></li>
+            <li><a href="/teacher/profile">Profile Settings</a></li>
             <li class="logout-container">
                 <form th:action="@{/logout}" method="post">
                     <button type="submit" class="logout-btn">Logout</button>
@@ -141,35 +155,10 @@
     </div>
     <div class="main-content">
         <h1>Welcome, <span sec:authentication="name">Admin</span>!</h1>
-        <!-- Manage Teacher Requests Section -->
-        <h3>Manage Teacher Requests</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="request : ${teacherRequests}">
-                <td th:text="${request.username}"></td>
-                <td th:text="${request.email}"></td>
-                <td>
-                    <form th:action="@{/admin/approve-teacher/{username}(username=${request.username})}" method="post">
-                        <button type="submit">Approve</button>
-                    </form>
-                    <form th:action="@{/admin/decline-teacher/{username}(username=${request.username})}" method="post">
-                        <button type="submit">Decline</button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
-
 <footer>
     <p>&copy; 2025 Online Exam. All rights reserved.</p>
 </footer>
+</body>
 </html>

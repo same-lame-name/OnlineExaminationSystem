@@ -14,13 +14,23 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private String role;
+    @Enumerated(EnumType.STRING) // Change to STRING instead of default ORDINAL
+    private Role role;
     private String email;
+
+
+    private boolean isApproved = false; // For teacher approval status
+
+    public enum Role {
+        STUDENT,
+        TEACHER,
+        ADMIN
+    }
 
     // UserDetails methods
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     @Override
@@ -40,7 +50,7 @@ public class User implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() { return true; }
     @Override
-    public boolean isEnabled() { return true; }
+    public boolean isEnabled() { return isApproved; }
 
     public Long getId() {
         return id;
@@ -58,11 +68,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -72,5 +82,13 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
     }
 }

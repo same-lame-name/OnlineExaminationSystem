@@ -1,0 +1,127 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Manage Exams</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Manage Examinations</h2>-->
+<!--    <form th:action="@{/admin/exams/search}" method="get">-->
+<!--        <input type="text" name="name" placeholder="Search by name"/>-->
+<!--        <button type="submit">Search</button>-->
+<!--    </form>-->
+<!--    <p><a href="/admin/exam/add">Add New Exam</a></p>-->
+<!--    <h3>Existing Exams</h3>-->
+<!--    <table>-->
+<!--        <tr><th>ID</th><th>Name</th><th>Price</th><th>Actions</th></tr>-->
+<!--        <tr th:each="exam : ${exams}">-->
+<!--            <td th:text="${exam.id}"></td>-->
+<!--            <td th:text="${exam.name}"></td>-->
+<!--            <td th:text="${exam.price}"></td>-->
+<!--            <td><a th:href="@{/admin/exam/edit(id=${exam.id})}">Edit</a></td>-->
+<!--            <td>-->
+<!--                <form th:action="@{/admin/exam/delete}" method="post">-->
+<!--                    <input type="hidden" name="id" th:value="${exam.id}"/>-->
+<!--                    <button type="submit">Delete</button>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--    <a href="/admin/dashboard">Back to Dashboard</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Exams</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff8c00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        a {
+            text-decoration: none;
+            color: #FFA500;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Manage Examinations</h2>
+    <form th:action="@{/teacher/exams/search}" method="get">
+        <input type="text" name="name" placeholder="Search by name"/>
+        <button type="submit">Search</button>
+    </form>
+    <p><a href="/teacher/exam/add">Add New Exam</a></p>
+    <h3>Existing Exams</h3>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Price</th><th>Actions</th></tr>
+        <tr th:each="exam : ${exams}">
+            <td th:text="${exam.id}"></td>
+            <td th:text="${exam.name}"></td>
+            <td th:text="${exam.price}"></td>
+            <td><a th:href="@{/teacher/exam/edit(id=${exam.id})}">Edit</a></td>
+            <td>
+                <form th:action="@{/teacher/exam/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${exam.id}"/>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/teacher/dashboard">Back to Dashboard</a>
+</div>
+</body>
+</html>

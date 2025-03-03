@@ -2,6 +2,7 @@ package com.exam.controller;
 
 import com.exam.entity.User;
 import com.exam.repository.UserRepository;
+import com.exam.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public class AuthController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserService userService;
 
     // Redirect root ("/") to "/landing"
     @GetMapping("/")
@@ -45,6 +49,10 @@ public class AuthController {
         if (request.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/admin/dashboard";
         }
+
+        if (request.isUserInRole("ROLE_TEACHER")) {
+            return "redirect:/teacher/dashboard";
+        }
         return "home";
     }
 
@@ -60,9 +68,23 @@ public class AuthController {
             model.addAttribute("error", "Username already exists");
             return "register";
         }
-        user.setRole("USER");
+        // Set approval status based on role
+        if (user.getRole() == User.Role.STUDENT) {
+            user.setApproved(true); // Students are auto-approved
+        } else if (user.getRole() == User.Role.TEACHER) {
+            user.setApproved(false); // Teachers need admin approval
+        } else {
+            // Handle unexpected role (shouldn't happen with dropdown, but for safety)
+            model.addAttribute("error", "Invalid role selected");
+            return "register";
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return "redirect:/login?registered=true";
+        try {
+            userService.registerUser(user);
+            return "redirect:/login?registered=true";
+        } catch (Exception e) {
+            model.addAttribute("error", "Registration failed: " + e.getMessage());
+            return "register";
+        }
     }
 }

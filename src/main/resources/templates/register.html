@@ -113,6 +113,13 @@
             <input type="email" id="email" th:field="*{email}" required/>
         </div>
         <div>
+            <label>Role:</label>
+            <select th:field="*{role}" required>
+                <option value="STUDENT">Student</option>
+                <option value="TEACHER">Teacher</option>
+            </select>
+        </div>
+        <div>
             <button type="submit">Register</button>
         </div>
     </form>
