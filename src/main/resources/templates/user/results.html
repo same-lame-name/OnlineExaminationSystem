@@ -1,18 +1,87 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Your Results</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Your Results</h2>-->
+<!--    <table>-->
+<!--        <tr><th>Exam</th><th>Score</th><th>Date Taken</th></tr>-->
+<!--        <tr th:each="result : ${results}">-->
+<!--            <td th:text="${result.examination.name}"></td>-->
+<!--            <td th:text="${result.score}"></td>-->
+<!--            <td th:text="${result.dateTaken}"></td> &lt;!&ndash; Updated field &ndash;&gt;-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--    <a href="/home">Back to Home</a>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Your Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #FFA500;
+            color: white;
+        }
+        td {
+            background-color: #fff;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FFA500;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #ff8c00;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
     <h2>Your Results</h2>
     <table>
         <tr><th>Exam</th><th>Score</th><th>Date Taken</th></tr>
         <tr th:each="result : ${results}">
             <td th:text="${result.examination.name}"></td>
             <td th:text="${result.score}"></td>
-            <td th:text="${result.dateTaken}"></td> <!-- Updated field -->
+            <td th:text="${result.dateTaken}"></td>
         </tr>
     </table>
     <a href="/home">Back to Home</a>
+</div>
 </body>
 </html>

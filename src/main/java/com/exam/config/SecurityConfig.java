@@ -60,3 +60,26 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
 }
+//@Bean
+//public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//    http
+//            .authorizeHttpRequests(authorize -> authorize
+//                    .requestMatchers("/teacher/**").hasRole("TEACHER") // Changed from ADMIN to TEACHER
+//                    .requestMatchers("/user/**").hasRole("USER")
+//                    .requestMatchers("/", "/landing", "/login", "/register").permitAll()
+//                    .anyRequest().authenticated()
+//            )
+//            .formLogin(form -> form
+//                    .loginPage("/login")
+//                    .defaultSuccessUrl("/home", true)
+//                    .permitAll()
+//            )
+//            .logout(logout -> logout
+//                    .logoutUrl("/logout")
+//                    .logoutSuccessUrl("/landing?logout")
+//                    .invalidateHttpSession(true)
+//                    .clearAuthentication(true)
+//                    .permitAll()
+//            );
+//    return http.build();
+//}

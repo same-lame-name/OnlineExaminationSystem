@@ -1,25 +1,113 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>View Results</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Exam Results</h2>-->
+<!--    <form th:action="@{/admin/results/search}" method="get">-->
+<!--        <input type="text" name="examName" placeholder="Search by Exam Name"/>-->
+<!--        <input type="text" name="studentName" placeholder="Search by Student Name"/>-->
+<!--        <button type="submit">Search</button>-->
+<!--    </form>-->
+
+<!--    <table>-->
+<!--        <tr><th>Student</th><th>Exam</th><th>Score</th><th>Date Taken</th></tr>-->
+<!--        <tr th:each="result : ${results}">-->
+<!--            <td th:text="${result.student.username}"></td> &lt;!&ndash; Updated field &ndash;&gt;-->
+<!--            <td th:text="${result.examination.name}"></td>-->
+<!--            <td th:text="${result.score}"></td>-->
+<!--            <td th:text="${result.dateTaken}"></td> &lt;!&ndash; Updated field &ndash;&gt;-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--    <a href="/admin/dashboard">Back to Dashboard</a>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>View Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 5px 10px 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Exam Results</h2>
+<h2>Exam Results</h2>
+
+<!-- Search Form -->
+<div class="form-container">
     <form th:action="@{/admin/results/search}" method="get">
-        <input type="text" name="examName" placeholder="Search by Exam Name"/>
-        <input type="text" name="studentName" placeholder="Search by Student Name"/>
+        <input type="text" name="examName" placeholder="Search by Exam Name" />
+        <input type="text" name="studentName" placeholder="Search by Student Name" />
         <button type="submit">Search</button>
     </form>
+</div>
 
-    <table>
-        <tr><th>Student</th><th>Exam</th><th>Score</th><th>Date Taken</th></tr>
-        <tr th:each="result : ${results}">
-            <td th:text="${result.student.username}"></td> <!-- Updated field -->
-            <td th:text="${result.examination.name}"></td>
-            <td th:text="${result.score}"></td>
-            <td th:text="${result.dateTaken}"></td> <!-- Updated field -->
-        </tr>
-    </table>
-    <a href="/admin/dashboard">Back to Dashboard</a>
+<!-- Results Table -->
+<table>
+    <tr>
+        <th>Student</th>
+        <th>Exam</th>
+        <th>Score</th>
+        <th>Date Taken</th>
+    </tr>
+    <tr th:each="result : ${results}">
+        <td th:text="${result.student.username}"></td> <!-- Updated field -->
+        <td th:text="${result.examination.name}"></td>
+        <td th:text="${result.score}"></td>
+        <td th:text="${result.dateTaken}"></td> <!-- Updated field -->
+    </tr>
+</table>
+
+<a href="/admin/dashboard">Back to Dashboard</a>
 </body>
 </html>

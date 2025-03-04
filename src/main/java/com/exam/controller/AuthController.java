@@ -2,6 +2,9 @@ package com.exam.controller;
 
 import com.exam.entity.User;
 import com.exam.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class AuthController {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
     @Autowired
     private UserRepository userRepository;
 
@@ -37,7 +41,10 @@ public class AuthController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/admin/dashboard";
+        }
         return "home";
     }
 

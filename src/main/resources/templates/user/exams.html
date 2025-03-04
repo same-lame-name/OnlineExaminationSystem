@@ -1,27 +1,103 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Available Exams</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Available Examinations</h2>-->
+<!--    <table>-->
+<!--        <tr><th>Name</th><th>Price</th><th>Action</th></tr>-->
+<!--        <tr th:each="exam : ${exams}">-->
+<!--            <td th:text="${exam.name}"></td>-->
+<!--            <td th:text="${exam.price}"></td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/user/exam-purchase(examId=${exam.id})}"-->
+<!--                   th:unless="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">-->
+<!--                    Purchase-->
+<!--                </a>-->
+<!--                <a th:href="@{/user/exam-take(examId=${exam.id})}"-->
+<!--                   th:if="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">-->
+<!--                    Take Exam-->
+<!--                </a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--    <a href="/home">Back to Home</a>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Available Exams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #FFA500;
+            color: white;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #FFA500;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a.button:hover {
+            background-color: #ff8c00;
+        }
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            color: #FFA500;
+        }
+    </style>
 </head>
 <body>
-    <h2>Available Examinations</h2>
-    <table>
-        <tr><th>Name</th><th>Price</th><th>Action</th></tr>
-        <tr th:each="exam : ${exams}">
-            <td th:text="${exam.name}"></td>
-            <td th:text="${exam.price}"></td>
-            <td>
-                <a th:href="@{/user/exam-purchase(examId=${exam.id})}"
-                   th:unless="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">
-                    Purchase
-                </a>
-                <a th:href="@{/user/exam-take(examId=${exam.id})}"
-                   th:if="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">
-                    Take Exam
-                </a>
-            </td>
-        </tr>
-    </table>
-    <a href="/home">Back to Home</a>
+<h2>Available Examinations</h2>
+<table>
+    <tr><th>Name</th><th>Price</th><th>Action</th></tr>
+    <tr th:each="exam : ${exams}">
+        <td th:text="${exam.name}"></td>
+        <td th:text="${exam.price}"></td>
+        <td>
+            <a class="button" th:href="@{/user/exam-purchase(examId=${exam.id})}"
+               th:unless="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">
+                Purchase
+            </a>
+            <a class="button" th:href="@{/user/exam-take(examId=${exam.id})}"
+               th:if="${@examExpressionUtility.hasSubscription(subscriptions, exam)}">
+                Take Exam
+            </a>
+        </td>
+    </tr>
+</table>
+<a class="back-link" href="/home">Back to Home</a>
 </body>
 </html>

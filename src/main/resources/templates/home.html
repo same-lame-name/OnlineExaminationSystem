@@ -1,18 +1,298 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Welcome to Online Exam System</h1>-->
+<!--    <div>-->
+<!--        <span sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin Dashboard</a></span>-->
+<!--        <span sec:authorize="hasRole('USER')"><a href="/user/exams">View Exams</a></span>-->
+<!--        <span sec:authorize="hasRole('USER')"><a href="/user/results">View Results</a></span>-->
+<!--        <span sec:authorize="hasRole('USER')"><a href="/user/profile">Profile</a></span>-->
+<!--        <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>-->
+<!--    </div>-->
+<!--    <p>Welcome, <span sec:authentication="name">User</span>!</p>-->
+<!--    <p>Role: <span sec:authentication="authorities">ROLE</span></p>-->
+<!--</body>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>User Dashboard - Online Exam</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f5f5f5;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            height: 100vh;-->
+<!--        }-->
+<!--        header {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            padding: 15px 30px;-->
+<!--            background-color: #fff;-->
+<!--            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);-->
+<!--            position: fixed;-->
+<!--            width: 100%;-->
+<!--            top: 0;-->
+<!--            z-index: 1000;-->
+<!--        }-->
+<!--        .container {-->
+<!--            display: flex;-->
+<!--            height: 100vh;-->
+<!--            padding-top: 60px;-->
+<!--        }-->
+<!--        .sidebar {-->
+<!--            width: 300px;-->
+<!--            background-color: #333;-->
+<!--            color: white;-->
+<!--            padding-top: 30px;-->
+<!--            height: 100%;-->
+<!--            position: fixed;-->
+<!--        }-->
+<!--        .sidebar ul {-->
+<!--            list-style: none;-->
+<!--            padding: 0;-->
+<!--        }-->
+<!--        .sidebar ul li a {-->
+<!--            text-decoration: none;-->
+<!--            color: white;-->
+<!--            display: block;-->
+<!--            padding: 15px;-->
+<!--        }-->
+<!--        .sidebar ul li a:hover {-->
+<!--            background-color: #FFA500;-->
+<!--        }-->
+<!--        .main-content {-->
+<!--            margin-left: 320px;-->
+<!--            padding: 30px;-->
+<!--            flex-grow: 1;-->
+<!--            overflow-y: auto;-->
+<!--        }-->
+<!--        .welcome-text {-->
+<!--            text-align: left;-->
+<!--            font-size: 20px;-->
+<!--            font-weight: bold;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+<!--        .card-container {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(2, 1fr);-->
+<!--            gap: 20px;-->
+<!--            padding: 10px;-->
+<!--        }-->
+<!--        .card {-->
+<!--            background-color: white;-->
+<!--            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);-->
+<!--            padding: 15px;-->
+<!--            border-radius: 8px;-->
+<!--            text-align: center;-->
+<!--            min-height: 120px;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            justify-content: center;-->
+<!--        }-->
+<!--        .logout-container {-->
+<!--            margin-top: 20px;-->
+<!--            padding: 15px;-->
+<!--        }-->
+<!--        .logout-btn {-->
+<!--            width: 100%;-->
+<!--            background-color: #FF5733;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 10px;-->
+<!--            cursor: pointer;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+<!--        .logout-btn:hover {-->
+<!--            background-color: #E04020;-->
+<!--        }-->
+<!--        footer {-->
+<!--            background-color: #333;-->
+<!--            color: white;-->
+<!--            padding: 20px;-->
+<!--            text-align: center;-->
+<!--            margin-top: auto;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <div class="logo">-->
+<!--        <img src="logo.jpeg" alt="Brand Logo">-->
+<!--    </div>-->
+<!--</header>-->
+<!--<div class="container">-->
+<!--    <div class="sidebar">-->
+<!--        <ul>-->
+
+<!--            <li><a href="/admin/dashboard" sec:authorize="hasRole('ADMIN')">Admin Dashboard</a></li>-->
+<!--            <li><a href="/exam-management" sec:authorize="hasRole('ADMIN')">Exam Management</a></li>-->
+<!--            <li><a href="/question-bank" sec:authorize="hasRole('ADMIN')">Question Bank</a></li>-->
+<!--            <li><a href="/user/exams" sec:authorize="hasRole('USER')">View Exams</a></li>-->
+<!--            <li><a href="/user/results" sec:authorize="hasRole('USER')">View Results</a></li>-->
+<!--            <li><a href="/settings">Settings</a></li>-->
+<!--            <li class="logout-container">-->
+<!--                <form th:action="@{/logout}" method="post">-->
+<!--                    <button type="submit" class="logout-btn">Logout</button>-->
+<!--                </form>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="main-content">-->
+<!--        <div class="welcome-text">-->
+<!--            <h1>Welcome, <span sec:authentication="name">User</span>!</h1>-->
+<!--            <p>Role: <span sec:authentication="authorities"></span></p>-->
+<!--        </div>-->
+<!--        <div class="card-container">-->
+<!--            <div class="card">-->
+<!--                <h3>Upcoming Exams</h3>-->
+<!--                <p>View and manage your upcoming exams.</p>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h3>Recent Results</h3>-->
+<!--                <p>View your recent exam results and performance.</p>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h3>Notifications</h3>-->
+<!--                <p>Check the latest updates and announcements.</p>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h3>Profile</h3>-->
+<!--                <p>Manage your account settings and details.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer>-->
+<!--    <p>&copy; 2025 Online Exam. All rights reserved.</p>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Online Exam</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            padding-top: 60px;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #333;
+            color: white;
+            padding-top: 30px;
+            height: 100%;
+            position: fixed;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 15px;
+        }
+        .sidebar ul li a:hover {
+            background-color: #FFA500;
+        }
+        .main-content {
+            margin-left: 320px;
+            padding: 30px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .logout-container {
+            margin-top: 20px;
+            padding: 15px;
+        }
+        .logout-btn {
+            width: 100%;
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .logout-btn:hover {
+            background-color: #E04020;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Online Exam System</h1>
-    <div>
-        <span sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin Dashboard</a></span>
-        <span sec:authorize="hasRole('USER')"><a href="/user/exams">View Exams</a></span>
-        <span sec:authorize="hasRole('USER')"><a href="/user/results">View Results</a></span>
-        <span sec:authorize="hasRole('USER')"><a href="/user/profile">Profile</a></span>
-        <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+<header>
+    <div class="logo">
+        <img src="logo.jpeg" alt="Brand Logo">
     </div>
-    <p>Welcome, <span sec:authentication="name">User</span>!</p>
-    <p>Role: <span sec:authentication="authorities">ROLE</span></p>
+</header>
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin Dashboard</a></li>
+            <li sec:authorize="hasRole('USER')"><a href="/user/exams">View Exams</a></li>
+            <li sec:authorize="hasRole('USER')"><a href="/user/results">View Results</a></li>
+            <li sec:authorize="hasRole('USER')"><a href="/user/profile">Profile</a></li>
+            <li class="logout-container">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="welcome-text">
+            <h1>Welcome, <span sec:authentication="name">User</span>!</h1>
+            <p>Role: <span sec:authentication="authorities">ROLE</span></p>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2025 Online Exam. All rights reserved.</p>
+</footer>
 </body>
 </html>
+
+

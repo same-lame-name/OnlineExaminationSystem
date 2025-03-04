@@ -1,19 +1,122 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Login - Online Exam System</title>-->
+<!--    <style>-->
+<!--        .login-container {-->
+<!--            max-width: 400px;-->
+<!--            margin: 50px auto;-->
+<!--            padding: 20px;-->
+<!--            border: 1px solid #ccc;-->
+<!--        }-->
+<!--        .error {-->
+<!--            color: red;-->
+<!--        }-->
+<!--        .success {-->
+<!--            color: green;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="login-container">-->
+<!--    <h2>Login</h2>-->
+<!--    <form th:action="@{/login}" method="post">-->
+<!--        <div th:if="${param.error}" class="error">-->
+<!--            Invalid username or password-->
+<!--        </div>-->
+<!--        <div th:if="${param.logout}" class="success">-->
+<!--            You have been logged out-->
+<!--        </div>-->
+<!--        <div th:if="${param.registered}" class="success">-->
+<!--            Registration successful! Please login.-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label for="username">Username:</label>-->
+<!--            <input type="text" id="username" name="username" required/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="password">Password:</label>-->
+<!--            <input type="password" id="password" name="password" required/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <button type="submit">Login</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <p>Don't have an account? <a href="/register">Register here</a></p>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login - Online Exam System</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
         .login-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
         }
         .error {
             color: red;
+            margin-bottom: 10px;
         }
         .success {
             color: green;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff8c00;
+        }
+        .register-link {
+            margin-top: 10px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+        }
+        .register-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -31,19 +134,17 @@
             Registration successful! Please login.
         </div>
 
-        <div>
+        <div class="input-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required/>
         </div>
-        <div>
+        <div class="input-group">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required/>
         </div>
-        <div>
-            <button type="submit">Login</button>
-        </div>
+        <button type="submit">Login</button>
     </form>
-    <p>Don't have an account? <a href="/register">Register here</a></p>
+    <a href="/register" class="register-link">Don't have an account? Register here</a>
 </div>
 </body>
 </html>

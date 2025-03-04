@@ -1,21 +1,107 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Take Exam</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2 th:text="${exam.name}"></h2>-->
+<!--    <form th:action="@{/user/exam/submit}" method="post" th:object="${examSubmission}">-->
+<!--        <input type="hidden" th:field="*{examId}" th:value="${exam.id}"/>-->
+<!--        <div th:each="question, iter : ${questions}">-->
+<!--            <p th:text="${iter.count + '. ' + question.questionText}"></p>-->
+<!--            <input type="radio" th:name="|answers[${iter.index}]|" value="A" th:text="${question.optionA}"/>-->
+<!--            <input type="radio" th:name="|answers[${iter.index}]|" value="B" th:text="${question.optionB}"/>-->
+<!--            <input type="radio" th:name="|answers[${iter.index}]|" value="C" th:text="${question.optionC}"/>-->
+<!--            <input type="radio" th:name="|answers[${iter.index}]|" value="D" th:text="${question.optionD}"/>-->
+<!--        </div>-->
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
+<!--    <a href="/user/exams">Cancel</a>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Take Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+            color: #444;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #FFA500;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff8c00;
+        }
+        .cancel-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #FFA500;
+            text-decoration: none;
+        }
+        .cancel-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
+<div class="container">
     <h2 th:text="${exam.name}"></h2>
     <form th:action="@{/user/exam/submit}" method="post" th:object="${examSubmission}">
         <input type="hidden" th:field="*{examId}" th:value="${exam.id}"/>
-        <div th:each="question, iter : ${questions}">
+        <div th:each="question, iter : ${questions}" class="question">
             <p th:text="${iter.count + '. ' + question.questionText}"></p>
-            <input type="radio" th:name="|answers[${iter.index}]|" value="A" th:text="${question.optionA}"/>
-            <input type="radio" th:name="|answers[${iter.index}]|" value="B" th:text="${question.optionB}"/>
-            <input type="radio" th:name="|answers[${iter.index}]|" value="C" th:text="${question.optionC}"/>
-            <input type="radio" th:name="|answers[${iter.index}]|" value="D" th:text="${question.optionD}"/>
+            <div class="options">
+                <label><input type="radio" th:name="|answers[${iter.index}]|" value="A"/> <span th:text="${question.optionA}"></span></label>
+                <label><input type="radio" th:name="|answers[${iter.index}]|" value="B"/> <span th:text="${question.optionB}"></span></label>
+                <label><input type="radio" th:name="|answers[${iter.index}]|" value="C"/> <span th:text="${question.optionC}"></span></label>
+                <label><input type="radio" th:name="|answers[${iter.index}]|" value="D"/> <span th:text="${question.optionD}"></span></label>
+            </div>
         </div>
         <button type="submit">Submit</button>
     </form>
-    <a href="/user/exams">Cancel</a>
+    <a href="/user/exams" class="cancel-link">Cancel</a>
+</div>
+
 </body>
-</html>/html>
+</html>
